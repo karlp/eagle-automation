@@ -88,6 +88,8 @@ class EagleScriptExport:
 
         cmd = [config.EAGLE, "-C" + script_string, in_path]
         try:
+            if not config.EAGLE:
+                raise FileNotFoundError("You ain't got no config!")
             subprocess.call(cmd)
         except FileNotFoundError:
             log.error("Eagle executable `{}` not found".format(config.EAGLE))
